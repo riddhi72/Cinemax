@@ -5,6 +5,12 @@
     <title>Cinemax-Register</title>
 </head>
 <body>
-
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {{ acc_form.as_p }}
+        <button type="submit">Register</button>
+        <button type="reset">Reset</button>
+    </form>
 </body>
 </html>

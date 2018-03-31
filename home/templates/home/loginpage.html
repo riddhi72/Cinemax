@@ -5,6 +5,11 @@
     <title>Cinemax-Login</title>
 </head>
 <body>
-
+    <form method="post">
+        {% csrf_token %}
+        {{ login_form.as_p }}
+        <button type="submit">LogIn</button>
+        <button type="reset">Reset</button>
+    </form>
 </body>
 </html>

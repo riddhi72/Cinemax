@@ -9,7 +9,7 @@
     <br><br>
     {% for i in movielist %}
     <img src="{{ i.moviePoster }}">
-    <a href="/movies/{{ username }}/"> {{ i.movieName }} </a>
+    <a href="/movies/{{ user_id }}/{{ i.pk }}"> {{ i.movieName }} </a>
     {% endfor %}
 </body>
 </html>

@@ -1,38 +1,39 @@
-from django.shortcuts import render
-'''
 from django.shortcuts import render, redirect
+from .forms import Register, AccInfo, UserLoginForm
 from django.contrib.auth import (
-    authenticate,
-    get_user_model,
-    login,
-    logout,
-)
-from .forms import UserLoginForm, UserRegisterForm'''
+        authenticate,
+        login,
+        logout,
+        get_user_model,
+    )
+from .models import Account
 
 
 def index(request):
-    context = {}
-    return render(request, 'home/homepage.html', context)
+    return render(request, 'home/homepage.html', {})
 
 
-def login(request):
-    context = {}
-    return render(request, 'home/loginpage.html', context)
-    '''
-    print(request.user.is_authenticated())
-    title = "Login"
-    userLogin = UserLoginForm(request.POST or None)
-    if userLogin.is_valid():
-        username = userLogin.cleaned_data.get("username")
-        password = userLogin.cleaned_data.get('password')
+def login_user(request):
+    login_form = UserLoginForm(request.POST or None)
+    if login_form.is_valid():
+        username = login_form.cleaned_data.get('username')
+        password = login_form.cleaned_data.get('password')
         user = authenticate(username=username, password=password)
-        userLogin(request, user)
-        return redirect("/")
-
-    return render(request, "login.html", {"login": login, "title": title})
-    '''
+        login(request, user)
+        return render(request, 'movies/movieoptions.html', {'username': username})
+    return render(request, 'home/loginpage.html', {})
 
 
-def register(request):
-    context = {}
-    return render(request, 'home/registerpage.html', context)
+def register_user(request):
+    form = Register(request.POST or None)
+    acc_form = AccInfo(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        password = form.cleaned_data.get('password')
+        user.set_password(password)
+        user.save()
+        user_auth = authenticate(username=user.username, password=password)
+        login(request, user_auth)
+        return redirect("home/login")
+    context = {"form": form, "acc_form": acc_form}
+    return render(request, "home/registerpage.html", context)
