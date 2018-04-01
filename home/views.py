@@ -11,7 +11,7 @@ from .models import Account
 
 
 def index(request):
-    return render(request, 'home/homepage.html', {})
+    return render(request, 'homepage.html', {})
 
 
 def login_user(request):
