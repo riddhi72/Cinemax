@@ -1,0 +1,21 @@
+    {% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+  <form method="post">
+      {% csrf_token %}
+      <h1>Cinemax - Login</h1>
+      {{ form.as_p }}
+      <!--
+      {% if user.is_authenticated %}
+        Hi {{ user.username }}!
+        <a href="{% url 'logout' %}">logout</a>
+      {% else %}
+        Please Try Again
+        <a href="{% url 'login' %}">login</a>
+      {% endif %}
+      -->
+      <button type="submit">Login</button>
+  </form>
+{% endblock %}

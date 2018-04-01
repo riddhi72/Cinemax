@@ -6,9 +6,11 @@
 </head>
 <body>
     <form action="/home/login">
+        {% csrf_token %}
         <button type="submit"/>Login</button>
     </form>
     <form action="/home/register">
+        {% csrf_token %}
         <button type="submit"/>Register</button>
     </form>
 </body>

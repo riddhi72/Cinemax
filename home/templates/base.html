@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Cinemax{% endblock %}</title>
+</head>
+<body>
+  <header>
+      {% csrf_token %}
+
+  </header>
+  <hr>
+  <main>
+      {% block content %}
+      {% endblock %}
+  </main>
+  <hr>
+</body>
+</html>

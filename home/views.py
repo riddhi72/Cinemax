@@ -1,3 +1,4 @@
+from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 from .forms import Register, AccInfo, UserLoginForm
 from django.contrib.auth import (
@@ -21,19 +22,16 @@ def login_user(request):
         user = authenticate(username=username, password=password)
         login(request, user)
         return render(request, 'movies/movieoptions.html', {'username': username})
-    return render(request, 'home/loginpage.html', {})
+    return render(request, 'registration/login.html', {})
 
 
 def register_user(request):
-    form = Register(request.POST or None)
-    acc_form = AccInfo(request.POST or None)
+    form = UserCreationForm(request.POST)
     if form.is_valid():
-        user = form.save(commit=False)
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        user_auth = authenticate(username=user.username, password=password)
-        login(request, user_auth)
-        return redirect("home/login")
-    context = {"form": form, "acc_form": acc_form}
-    return render(request, "home/registerpage.html", context)
+        form.save()
+        username = form.cleaned_data.get('username')
+        raw_password = form.cleaned_data.get('password1')
+        user = authenticate(username=username, password=raw_password)
+        login(request, user)
+        return redirect('/home/login')
+    return render(request, 'registration/signup.html', {'form': form})
