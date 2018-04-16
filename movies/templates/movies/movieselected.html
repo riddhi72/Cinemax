@@ -6,4 +6,16 @@
     Movie : {{ movie }}
     <br><br>
     <img src="{{ smovie.moviePoster }}">
+    <br><br>
+
+    <div class="row">
+        {% for i in seats %}
+            <div class="col-sm-3">
+                <input type="checkbox">{{ i.seatNo }}
+            </div>
+        {% endfor %}
+    </div>
+
+    <button type="submit">Confirm</button>
+
 {% endblock %}

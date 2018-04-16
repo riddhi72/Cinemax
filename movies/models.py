@@ -7,3 +7,12 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.movieName
+
+
+class Seat(models.Model):
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+    seatNo = models.CharField(max_length=6)
+    reserved = models.BooleanField
+
+    def __str__(self):
+        return self.seatNo
