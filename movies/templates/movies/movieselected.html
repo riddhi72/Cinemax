@@ -5,17 +5,32 @@
     <br>
     Movie : {{ movie }}
     <br><br>
-    <img src="{{ smovie.moviePoster }}">
+    <img src="{{ movie.moviePoster }}">
     <br><br>
 
-    <div class="row">
-        {% for i in seats %}
-            <div class="col-sm-3">
-                <input type="checkbox">{{ i.seatNo }}
-            </div>
-        {% endfor %}
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    Rate: Rs 150 per seat
+    <div class="row" style="text-align:center">
+        <label class=""> ALL EYES HERE </label>
     </div>
+    <br><br>
 
-    <button type="submit">Confirm</button>
-
+    <form action="{% url 'movies:reserved_seats' movie.pk %}" method="post">
+        {% csrf_token %}
+        <div class="row">
+            {% for i in movie.seat_set.all %}
+                <div class="col-sm-3">
+                    {% if i.reserved %}
+                        <input type="checkbox" name="reserved_seats" value="{{ i.pk }}"disabled>{{ i.seatNo }}
+                    {% else %}
+                        <input type="checkbox" name="reserved_seats" value="{{ i.pk }}">{{ i.seatNo }}
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+        <input type="submit" value="Confirm Booking">
+    </form>
 {% endblock %}

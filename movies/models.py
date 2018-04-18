@@ -12,7 +12,7 @@ class Movie(models.Model):
 class Seat(models.Model):
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     seatNo = models.CharField(max_length=6)
-    reserved = models.BooleanField
+    reserved = models.BooleanField(default=False)
 
     def __str__(self):
         return self.seatNo

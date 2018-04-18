@@ -1,0 +1,24 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+    Account : {{ user }}
+    <br>
+    Movie : {{ movie }}
+    <br><br>
+    <img src="{{ movie.moviePoster }}">
+    <br><br>
+
+    The following seats are booked:<br>
+    {% for i in booked_seats %}
+        {{i.seatNo}}<br>
+    {% endfor %}
+    <br><br>
+    Total payment : Rs {{ total }}
+    <br><br><br>
+    <form action="/movies/">
+        {% csrf_token %}
+        <button type="submit"/>Continue Booking</button>
+    </form>
+    </form>
+{% endblock %}
