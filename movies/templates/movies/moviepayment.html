@@ -2,8 +2,6 @@
 
 {% block content %}
 
-    Account : {{ user }}
-    <br>
     Movie : {{ movie }}
     <br><br>
     <img src="{{ movie.moviePoster }}">
@@ -11,7 +9,7 @@
 
     The following seats are booked:<br>
     {% for i in booked_seats %}
-        {{i.seatNo}}<br>
+        {{i}}<br>
     {% endfor %}
     <br><br>
     Total payment : Rs {{ total }}

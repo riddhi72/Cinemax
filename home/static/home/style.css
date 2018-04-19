@@ -1,3 +1,4 @@
-body{
-    background: white url("images/movie-and-event.png");
+body {
+    background-image: url("images/base_bg.jpg");
+    background-repeat: no-repeat;
 }

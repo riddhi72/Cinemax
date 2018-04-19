@@ -38,7 +38,7 @@ def reserved_seats(request, smovie):
                 m1.save()
             count = len(booked_seats)
             total = count*150
-            return render(request, 'movies/moviepayment.html', {'movie': movie, 'total': total})
+            return render(request, 'movies/moviepayment.html', {'movie': movie, 'total': total, 'booked_seats': booked_seats})
     else:
         raise Http404("Please Log In To Access the Site.")
 

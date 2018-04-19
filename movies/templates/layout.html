@@ -23,7 +23,12 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <label style="" Account : {{ user }}
+        <br><br>
+        {% block content %}
+        {% endblock %}
+    </div>
 
-    {% block content %}
-    {% endblock %}
+
 </body>

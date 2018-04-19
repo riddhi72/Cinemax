@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 {% load staticfiles %}
-<link rel="stylesheet" type="text/css" href="{% static ' home/style.css ' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'home/style.css' %}" />
 
 <head>
     <meta charset="UTF-8">
     <title>Cinemax</title>
 </head>
 <body>
-    <form action="/home/login">
-        {% csrf_token %}
-        <button type="submit"/>Login</button>
-    </form>
-    <form action="/home/register">
-        {% csrf_token %}
-        <button type="submit"/>Register</button>
-    </form>
+    <div class="container">
+        <form action="/home/login">
+            {% csrf_token %}
+            <button type="submit"/>Login</button>
+        </form>
+        <form action="/home/register">
+            {% csrf_token %}
+            <button type="submit"/>Register</button>
+        </form>
+    </div>
+
 </body>
 </html>
