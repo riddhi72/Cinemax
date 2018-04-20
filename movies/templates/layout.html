@@ -10,11 +10,10 @@
 </head>
 <body>
 
-
-    <nav class="navbar navbar-default">
+    <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">CINEMAX</a>
+                <a href="#" class="navbar-brand" >CINEMAX</a>
             </div>
             <div>
                 <ul class="nav navbar-nav navbar-right">
@@ -24,12 +23,15 @@
         </div>
     </nav>
     <div class="container">
-        <label style="color:blue;text-align:center">
-            Account : {{ user }}
-        </label>
-        <br><br>
+        <div class="row" align="center" style="font-size: 150%">
+            <label style="color:blue;text-align:center">
+                Account : {{ user }}
+            </label>
+            <br>
+        </div>
         {% block content %}
         {% endblock %}
     </div>
 
 </body>
+</html>

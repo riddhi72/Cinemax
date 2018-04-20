@@ -1,4 +1,23 @@
-body {
-    background-image: url("images/base_bg.jpg");
-    background-repeat: no-repeat;
+body {background-color: black;}
+form {border: 3px solid #f1f1f1; padding: 12px; width: 50%;}
+h2 {color: white;}
+label {color: white; margin: 5px}
+input[type=text], input[type=password] {
+        width: 40%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
 }
+button {
+   background-color: #4CAF50;
+   color: white;
+   padding: 14px 20px;
+   margin: 8px 0;
+   border: none;
+   cursor: pointer;
+   width: 30%;
+}
+button:hover {opacity: 0.5;}
+.container {padding: 80px;}

@@ -1,36 +1,57 @@
 {% extends 'layout.html' %}
 
 {% block content %}
-    Account : {{ user }}
+
+<div class="row" align="center" style="font-size: 150%">
+    <label style="color:blue;text-align:center">
+        Movie : {{ movie }}
+    </label>
     <br>
-    Movie : {{ movie }}
-    <br><br>
-    <img src="{{ movie.moviePoster }}">
-    <br><br>
+</div>
 
-    {% if error_message %}
-        <p><strong>{{ error_message }}</strong></p>
-    {% endif %}
+{% if error_message %}
+<p><strong>{{ error_message }}</strong></p>
+{% endif %}
 
-    Rate: Rs 150 per seat
-    <div class="row" style="text-align:center">
-        <label class=""> ALL EYES HERE </label>
+<div class="container">
+    <div class="col-sm-6"><br><br>
+        <img src="{{ movie.moviePoster }}">
+        <br><br>
+        <p><strong>Rate: Rs 150 per seat</strong></p>
     </div>
-    <br><br>
 
-    <form action="{% url 'movies:reserved_seats' movie.pk %}" method="post">
-        {% csrf_token %}
-        <div class="row">
-            {% for i in movie.seat_set.all %}
+    {% if movie.seat_set.all.count == 0 %}
+    <div class="col-sm-6" style="text-alignment:center">
+        <br><br><br><br>
+        <p><strong>COMING SOON !!</strong></p>
+    </div>
+    {% else %}
+    <div class="col-sm-6">
+        <div class="row" style="text-align:center">
+            <br><br><br><br>
+            <p><strong>ALL EYES HERE</strong></p>
+        </div>
+        <br><br>
+        <form action="{% url 'movies:reserved_seats' movie.pk %}" method="post">
+            {% csrf_token %}
+            <div class="row">
+                {% for i in movie.seat_set.all %}
                 <div class="col-sm-3">
                     {% if i.reserved %}
-                        <input type="checkbox" name="reserved_seats" value="{{ i.pk }}"disabled>{{ i.seatNo }}
+                    <input type="checkbox" name="reserved_seats" value="{{ i.pk }}" disabled>{{ i.seatNo }}
                     {% else %}
-                        <input type="checkbox" name="reserved_seats" value="{{ i.pk }}">{{ i.seatNo }}
+                    <input type="checkbox" name="reserved_seats" value="{{ i.pk }}">{{ i.seatNo }}
                     {% endif %}
                 </div>
-            {% endfor %}
-        </div>
-        <input type="submit" value="Confirm Booking">
-    </form>
+                {% endfor %}
+            </div>
+            <br><br>
+            <div class="row" style="text-align:center">
+                <input type="submit" value="Confirm Booking">
+            </div>
+        </form>
+    </div>
+    {% endif %}
+</div>
+
 {% endblock %}

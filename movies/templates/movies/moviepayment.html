@@ -2,24 +2,30 @@
 
 {% block content %}
 
-    <label style="color:blue;text-align:center">
-        Movie : {{ movie }}
-    </label>
+<label style="color:blue;text-align:center">
+    Movie : {{ movie }}
+</label>
+<div class="row">
+    <div class="col-sm-6">
+        <br><br>
+        <img src="{{ movie.moviePoster }}">
+    </div>
+    <div class="col-sm-6">
+        <br><br><br><br>
+        The following seats are booked:<br>
+        {% for i in display_seats %}
+        <p class="text-success">{{i}}</p>
+        {% endfor %}
+        <br><br>
+        Total payment : Rs {{ total }}
+        <br><br><br>
+        <form action="/movies/">
+            {% csrf_token %}
+            <button type="submit"/>
+            Continue Booking</button>
+        </form>
+    </div>
+</div>
 
-    <br><br>
-    <img src="{{ movie.moviePoster }}">
-    <br><br>
-
-    The following seats are booked:<br>
-    {% for i in display_seats %}
-        <p>{{i}}</p>
-    {% endfor %}
-    <br><br>
-    Total payment : Rs {{ total }}
-    <br><br><br>
-    <form action="/movies/">
-        {% csrf_token %}
-        <button type="submit"/>Continue Booking</button>
-    </form>
 
 {% endblock %}

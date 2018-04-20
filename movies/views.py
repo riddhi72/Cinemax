@@ -27,9 +27,9 @@ def reserved_seats(request, smovie):
         'error_message': "You Did Not Select Any Seats",
     }
     if request.user.is_authenticated:
-        try:
-            booked_seats = request.POST.getlist('reserved_seats')
-        except (KeyError, Seat.DoesNotExist):
+        booked_seats = request.POST.getlist('reserved_seats')
+        count = len(booked_seats)
+        if count==0:
             return render(request, 'movies/movieselected.html', context)
         else:
             display_seats = []
@@ -38,7 +38,6 @@ def reserved_seats(request, smovie):
                 m1.reserved = True
                 display_seats.append(m1)
                 m1.save()
-            count = len(booked_seats)
             total = count*150
             return render(request, 'movies/moviepayment.html', {'movie': movie, 'total': total, 'display_seats': display_seats})
     else:

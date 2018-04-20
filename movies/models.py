@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Movie(models.Model):
-    movieName = models.CharField(max_length=15)
+    movieName = models.CharField(max_length=30)
     moviePoster = models.CharField(max_length=10000)
 
     def __str__(self):
