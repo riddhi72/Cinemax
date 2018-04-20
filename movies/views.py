@@ -32,13 +32,15 @@ def reserved_seats(request, smovie):
         except (KeyError, Seat.DoesNotExist):
             return render(request, 'movies/movieselected.html', context)
         else:
+            display_seats = []
             for a in booked_seats:
                 m1 = Seat.objects.get(pk=a)
                 m1.reserved = True
+                display_seats.append(m1)
                 m1.save()
             count = len(booked_seats)
             total = count*150
-            return render(request, 'movies/moviepayment.html', {'movie': movie, 'total': total, 'booked_seats': booked_seats})
+            return render(request, 'movies/moviepayment.html', {'movie': movie, 'total': total, 'display_seats': display_seats})
     else:
         raise Http404("Please Log In To Access the Site.")
 
