@@ -17,5 +17,5 @@ urlpatterns = [
     url(r'^register/$', views.register_user, name='register'),
 
     # /home/
-    url(r'^logout/$', auth_views.logout, {'next_page': '/home/login'}, name='logout'),
+    url(r'^logout/$', auth_views.logout, {'next_page': '/home/'}, name='logout'),
 ]
